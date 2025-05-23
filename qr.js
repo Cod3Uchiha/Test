@@ -86,7 +86,7 @@ router.get('/', async (req, res) => {
 ║❍ 𝐘𝐨𝐮𝐭𝐮𝐛𝐞: youtube.com/@Terrizev 
 ║❍ 𝐎𝐰𝐧𝐞𝐫: 254784937112
 ║❍ 𝐑𝐞𝐩𝐨: https://github.com/Terrizev/ANONYMOUS-MD
-║❍ 𝐖𝐚𝐆𝗿𝐨𝐮𝐩: https://chat.whatsapp.com/CzFlFQrkdzxFw0pxCBYM7H
+║❍ 𝚆𝙰 𝙲𝙷𝙰𝙽𝙽𝙴𝙻: https://whatsapp.com/channel/0029VbAOc7WE50Uba7xDE53U
 ║❍ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: https://whatsapp.com/channel/0029Vb57ZHh7IUYcNttXEB3y
 ║ ☬ ☬ ☬ ☬
 ╚═════════════════════╝
