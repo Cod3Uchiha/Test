@@ -1,0 +1,22 @@
+{
+    "name": "ANONYMOUS-MD Pairing",
+    "description": "ANONYMOUS-MD WA bot, Created by Terrizev",
+    "logo": "https://telegra.ph/file/a7ca8d4777fa8ad977795.jpg",
+    "repository": "https://github.com/cheekydavy/MBUVI-PAIR-CODE",
+    "keywords": ["LegacyMd"],
+    "success_url": "/", 
+    "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
+    "env": {      
+      "PORT": {
+        "description": "Port for web app.4000,5000,3000... any!",
+        "value": "5000",
+        "required": false 
+      },
+      "MESSAGE": {
+        "description": "set creds.json conformation file",
+        "value": "",
+        "required": false 
+      }
+    }   
+
+}

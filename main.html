@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ANONYMOUS-MD PAIR SITE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0066ff;       /* Vibrant blue */
+      --secondary: #00ffcc;    /* Teal */
+      --accent: #ff00aa;       /* Pink */
+      --dark: #0a0a1a;         /* Deep blue-black */
+      --light: #e0f7ff;        /* Light blue */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Cyber Grid Background */
+    .cyber-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: var(--dark);
+      overflow: hidden;
+    }
+
+    .cyber-grid::before,
+    .cyber-grid::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 50px,
+        rgba(0, 102, 255, 0.1) 50px,
+        rgba(0, 102, 255, 0.1) 52px
+      );
+      animation: gridMove 20s linear infinite;
+    }
+
+    .cyber-grid::after {
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 50px,
+        rgba(255, 0, 170, 0.1) 50px,
+        rgba(255, 0, 170, 0.1) 52px
+      );
+    }
+
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100px); }
+    }
+
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+    }
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+    }
+    .glitch::before {
+      color: var(--accent);
+      z-index: -1;
+      animation: glitch-effect 3s infinite;
+    }
+    .glitch::after {
+      color: var(--secondary);
+      z-index: -2;
+      animation: glitch-effect 2s infinite reverse;
+    }
+    @keyframes glitch-effect {
+      0% { transform: translate(0); }
+      20% { transform: translate(-3px, 3px); }
+      40% { transform: translate(-3px, -3px); }
+      60% { transform: translate(3px, 3px); }
+      80% { transform: translate(3px, -3px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+      margin-top: 60px;
+    }
+
+    /* News Ticker */
+    .news-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .news-container .title {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      padding: 10px 24px;
+      color: white;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      z-index: 1001;
+    }
+
+    .news-container .ticker {
+      width: 100%;
+      overflow: hidden;
+      background: rgba(10, 10, 26, 0.9);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      margin-left: 40%;
+    }
+
+    .news-container ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+      animation: scroll 20s infinite linear;
+    }
+
+    .news-container ul li {
+      white-space: nowrap;
+      padding: 0 24px;
+      color: var(--secondary);
+      font-size: 1rem;
+      text-shadow: 0 0 5px var(--secondary);
+      position: relative;
+    }
+
+    .news-container ul li::after {
+      content: "";
+      width: 1px;
+      height: 100%;
+      background: var(--accent);
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 0.5;
+    }
+
+    .news-container ul li:last-child::after {
+      display: none;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(10, 10, 26, 0.7);
+      border: 2px solid var(--primary);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .feature-card {
+      background: rgba(10, 10, 26, 0.8);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .feature-card:nth-child(2) {
+      border-color: var(--secondary);
+    }
+    .feature-card:nth-child(3) {
+      border-color: var(--accent);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
+    }
+    .feature-card:nth-child(2):hover {
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    }
+    .feature-card:nth-child(3):hover {
+      box-shadow: 0 0 15px rgba(255, 0, 170, 0.5);
+    }
+
+    .feature-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .feature-card:nth-child(2) h3 {
+      color: var(--secondary);
+    }
+    .feature-card:nth-child(3) h3 {
+      color: var(--accent);
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: var(--light);
+      flex-grow: 1;
+    }
+
+    .feature-card .btn {
+      width: 100%;
+      padding: 0.8em;
+      font-size: 1rem;
+      border-color: var(--primary);
+      color: var(--primary);
+      text-shadow: 0 0 5px var(--primary);
+    }
+    .feature-card:nth-child(2) .btn {
+      border-color: var(--secondary);
+      color: var(--secondary);
+      text-shadow: 0 0 5px var(--secondary);
+    }
+    .feature-card:nth-child(3) .btn {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent);
+    }
+
+    /* About Section */
+    .about {
+      background: rgba(10, 10, 26, 0.8);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .about h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      color: var(--light);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: rgba(10, 10, 26, 0.8);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .contact h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      font-size: 1.1rem;
+      color: var(--light);
+      margin-bottom: 20px;
+    }
+
+    /* Buttons */
+    .btn {
+      background: transparent;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-shadow: 0 0 5px var(--primary);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.3), transparent);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background: rgba(0, 102, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
+      color: white;
+      border-color: white;
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+      filter: brightness(0.8);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(10, 10, 26, 0.8);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      text-align: center;
+      color: var(--light);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      text-shadow: 0 0 5px var(--light);
+      width: 100%;
+    }
+
+    .footer b {
+      color: var(--primary);
+    }
+
+    .footer .social-links {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer .social-links a {
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .footer .social-links a:hover {
+      color: var(--secondary);
+      text-shadow: 0 0 10px var(--secondary);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+        margin-top: 80px;
+      }
+
+      .news-container .title {
+        width: 50%;
+        font-size: 0.7rem;
+        padding: 8px 15px;
+      }
+
+      .news-container .ticker {
+        margin-left: 50%;
+      }
+
+      .news-container ul li {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card h3 {
+        font-size: 1.3rem;
+      }
+
+      .about h2,
+      .contact h2 {
+        font-size: 1.5rem;
+      }
+
+      .about p,
+      .contact p {
+        font-size: 1rem;
+      }
+
+      .feature-card .btn {
+        font-size: 0.9rem;
+        padding: 0.6em;
+      }
+
+      .footer .social-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cyber-grid"></div>
+  <div class="news-container">
+    <div class="title">ANONYMOUS-MD ALERT</div>
+    <div class="ticker">
+      <ul>
+        <li>Welcome to ANONYMOUS-MD Pair Site!</li>
+        <li>Get your session IDs for the ultimate WhatsApp bot experience</li>
+        <li>Powered by Terrizev</li>
+        <li>New update v3.0.1 released!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1 class="glitch" data-text="ANONYMOUS-MD">ANONYMOUS-MD PAIR SITE</h1>
+      <p>Your exclusive gateway to ANONYMOUS-MD WhatsApp bot sessions. Get your QR or pair code and join the revolution!</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+      <div class="feature-card">
+        <h3>QR Code Pairing</h3>
+        <p>Scan a QR code to instantly connect your WhatsApp bot with a secure session ID.</p>
+        <button onclick="window.location.href='/qr'" class="btn">Get QR Code</button>
+      </div>
+      <div class="feature-card">
+        <h3>Pair Code</h3>
+        <p>Enter a phone number and get a code to pair your bot without scanning.</p>
+        <button onclick="window.location.href='/pair'" class="btn">Get Pair Code</button>
+      </div>
+      <div class="feature-card">
+        <h3>Deploy ANONYMOUS-MD</h3>
+        <p>Deploy your own ANONYMOUS-MD bot for free.</p>
+        <button onclick="window.location.href='https://github.com/Terrizev/ANONYMOUS-MD'" class="btn">Deploy Now</button>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about">
+      <h2>About ANONYMOUS-MD</h2>
+      <p>ANONYMOUS-MD is the most advanced WhatsApp bot framework, offering unparalleled features and customization. Our mission is to provide the best bot experience with secure, easy-to-use session management.</p>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact">
+      <h2>Support & Community</h2>
+      <p>Join our community for support, updates, and collaboration opportunities.</p>
+      <div class="social-links">
+        <a href="https://whatsapp.com/channel/0029Vb57ZHh7IUYcNttXEB3y" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://t.me/Terrizev" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://github.com/Terrizev" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://youtube.com/@Terrizev" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© Terrizev 2025 - All Rights Reserved</p>
+    <p>ANONYMOUS-MD - The Ultimate WhatsApp Bot Solution</p>
+    <div class="social-links">
+      <a href="https://whatsapp.com/channel/0029Vb57ZHh7IUYcNttXEB3y" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/Terrizev" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://github.com/Terrizev" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://youtube.com/@Terrizev" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+
+  <!-- GetButton.io widget -->
+  <script type="text/javascript">
+    (function () {
+      var options = {
+        whatsapp: "+254784937112",
+        telegram: "Terrizev",
+        call_to_action: "Need help? Message us",
+        button_color: "#0066ff",
+        position: "left",
+        order: "whatsapp,telegram",
+        pre_filled_message: "Hello from ANONYMOUS-MD Pair Site",
+      };
+      var proto = 'https:', host = "getbutton.io", url = proto + '//static.' + host;
+      var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+      s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+      var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+  </script>
+</body>
+</html>
