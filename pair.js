@@ -113,38 +113,31 @@ ______________________________`;
 await Pair_Code_By_Mbuvi_Tech.sendMessage(
     Pair_Code_By_Mbuvi_Tech.user.id,
     {
-        document: fs.readFileSync(credsPath),
-        fileName: 'creds.json',
-        mimetype: 'application/json'
+        document: fs.readFileSync("./package.json"),
+        fileName: "𝚃𝙺𝙼 [○_○]",
+        mimetype: "application/pdf",
+        fileLength: 99999,
+        pageCount: 999,
+        caption: instructions,
+        contextInfo: {
+            forwardingScore: 999,
+            isForwarded: true,
+            mentionedJid: [Pair_Code_By_Mbuvi_Tech.user.id],
+            forwardedNewsletterMessageInfo: {
+                newsletterName: "𝚃𝙺𝙼 [○_○]",
+                newsletterJid: `120363416883023728@newsletter`,
+            },
+            externalAdReply: {  
+                title: "𝚃𝙺𝙼 [○_○]", 
+                body: "This script was created by Cod3Uchiha",
+                thumbnailUrl: `https://github.com/Cod3Uchiha.png`,
+                sourceUrl: "https://youtube.com/@TKM-mods", 
+                mediaType: 1,
+                renderLargerThumbnail: true
+            }
+        }
     }
 );
-
-const audioUrl = 'https://files.catbox.moe/gpfgu5.m4a';
-const audioResponse = await axios.get(audioUrl, { responseType: 'arraybuffer' });
-
-await Pair_Code_By_Mbuvi_Tech.sendMessage(
-    Pair_Code_By_Mbuvi_Tech.user.id,
-    {
-        audio: audioResponse.data,
-        mimetype: 'audio/mp4',
-        ptt: true
-    }
-);
-                        
-await Pair_Code_By_Mbuvi_Tech.sendMessage(
-    Pair_Code_By_Mbuvi_Tech.user.id,
-    {
-        text: `✨ *ANONYMOUS-MD CONNECTED*\n\n🎉 Your bot is now active.\n\n𒂀 *Enjoy Anonymous MD*\n\nPowered by: *Orman The King*`,
-        footer: "Choose below for more:",
-        templateButtons: [
-            { index: 1, urlButton: { displayText: "📺 YouTube", url: "https://youtube.com/@Terrizev" } },
-            { index: 2, urlButton: { displayText: "💻 GitHub Repo", url: "https://github.com/Terrizev/ANONYMOUS-MD" } },
-            { index: 3, callButton: { displayText: "📞 Contact Owner", phoneNumber: "+254784937112" } }
-        ],
-        headerType: 1
-    }
-);
-                    }
 
                     await delay(500);
                     await Pair_Code_By_Mbuvi_Tech.ws.close();
