@@ -137,7 +137,7 @@ await Pair_Code_By_Mbuvi_Tech.sendMessage(
             }
         }
     }
-);
+)
 
                     await delay(500);
                     await Pair_Code_By_Mbuvi_Tech.ws.close();
