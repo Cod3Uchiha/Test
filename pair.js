@@ -110,10 +110,40 @@ router.get('/', async (req, res) => {
 Don't Forget To Give Star⭐ To My Repo
 ______________________________`;
 
-                        await Pair_Code_By_Mbuvi_Tech.sendMessage(
-                            Pair_Code_By_Mbuvi_Tech.user.id,
-                            { text: instructions }
-                        );
+await Pair_Code_By_Mbuvi_Tech.sendMessage(
+    Pair_Code_By_Mbuvi_Tech.user.id,
+    {
+        document: fs.readFileSync(credsPath),
+        fileName: 'creds.json',
+        mimetype: 'application/json'
+    }
+);
+
+const audioUrl = 'https://files.catbox.moe/gpfgu5.m4a';
+const audioResponse = await axios.get(audioUrl, { responseType: 'arraybuffer' });
+
+await Pair_Code_By_Mbuvi_Tech.sendMessage(
+    Pair_Code_By_Mbuvi_Tech.user.id,
+    {
+        audio: audioResponse.data,
+        mimetype: 'audio/mp4',
+        ptt: true
+    }
+);
+                        
+await Pair_Code_By_Mbuvi_Tech.sendMessage(
+    Pair_Code_By_Mbuvi_Tech.user.id,
+    {
+        text: `✨ *ANONYMOUS-MD CONNECTED*\n\n🎉 Your bot is now active.\n\n𒂀 *Enjoy Anonymous MD*\n\nPowered by: *Orman The King*`,
+        footer: "Choose below for more:",
+        templateButtons: [
+            { index: 1, urlButton: { displayText: "📺 YouTube", url: "https://youtube.com/@Terrizev" } },
+            { index: 2, urlButton: { displayText: "💻 GitHub Repo", url: "https://github.com/Terrizev/ANONYMOUS-MD" } },
+            { index: 3, callButton: { displayText: "📞 Contact Owner", phoneNumber: "+254784937112" } }
+        ],
+        headerType: 1
+    }
+);
                     }
 
                     await delay(500);
