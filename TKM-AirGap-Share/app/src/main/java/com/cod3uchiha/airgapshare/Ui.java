@@ -37,7 +37,7 @@ final class Ui {
     static Button button(Context context, String text) {
         Button button = new Button(context);
         button.setText(text);
-        button.setTextAllCaps(false);
+        button.setAllCaps(false);
         button.setTextSize(17);
         button.setTypeface(Typeface.DEFAULT_BOLD);
         button.setMinHeight(dp(context, 58));
