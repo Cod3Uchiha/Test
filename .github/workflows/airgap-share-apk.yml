@@ -31,9 +31,9 @@ jobs:
       - name: Build debug APK
         run: gradle -p TKM-AirGap-Share --no-daemon assembleDebug --stacktrace
       - name: Rename APK
-        run: cp TKM-AirGap-Share/app/build/outputs/apk/debug/app-debug.apk TKM-AirGap-Share-v1.0.apk
+        run: cp TKM-AirGap-Share/app/build/outputs/apk/debug/app-debug.apk TKM-AirGap-Share-v2.0.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: TKM-AirGap-Share-APK
-          path: TKM-AirGap-Share-v1.0.apk
+          name: TKM-AirGap-Share-v2-APK
+          path: TKM-AirGap-Share-v2.0.apk
           if-no-files-found: error
