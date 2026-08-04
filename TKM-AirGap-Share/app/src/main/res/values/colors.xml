@@ -1,0 +1,7 @@
+<resources>
+    <color name="ink">#101114</color>
+    <color name="surface">#F6F7FB</color>
+    <color name="accent">#6C4DFF</color>
+    <color name="accent_dark">#4C2FD4</color>
+    <color name="white">#FFFFFF</color>
+</resources>
