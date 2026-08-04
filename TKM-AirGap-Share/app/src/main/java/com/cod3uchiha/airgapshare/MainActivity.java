@@ -15,15 +15,16 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout root = Ui.page(this);
         TextView eyebrow = Ui.body(this, "OFFLINE • PRIVATE • SERVERLESS");
-        TextView title = Ui.title(this, "TKM AirGap Share", 32);
+        TextView title = Ui.title(this, "TKM AirGap Share 2", 32);
         TextView description = Ui.body(this,
-                "Move files from one Android phone to another using only the sender’s screen and the receiver’s camera. " +
+                "Move files between Android phones using only the sender’s screen and the receiver’s camera. " +
                 "No Bluetooth, Wi‑Fi, mobile data, account, cloud, or nearby-device access.");
 
         Button send = Ui.button(this, "Send a file");
         Button receive = Ui.button(this, "Receive a file");
         TextView note = Ui.body(this,
-                "Best for documents, keys, small archives and emergency transfers. Optical transfer is slower for large videos.");
+                "Turbo mode uses 2 KB QR payloads, rapid frame cycling, disk-backed transfers, automatic recovery of missed chunks, " +
+                "and SHA-256 verification. Files up to 512 MB are supported, but optical transfer remains much slower than a cable or radio link.");
 
         root.addView(eyebrow, Ui.fullWidth(this));
         root.addView(Ui.spacer(this, 12));
