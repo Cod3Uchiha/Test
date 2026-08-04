@@ -6,6 +6,11 @@ on:
     paths:
       - 'TKM-AirGap-Share/**'
       - '.github/workflows/airgap-share-apk.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'TKM-AirGap-Share/**'
+      - '.github/workflows/airgap-share-apk.yml'
   workflow_dispatch:
 
 permissions:
