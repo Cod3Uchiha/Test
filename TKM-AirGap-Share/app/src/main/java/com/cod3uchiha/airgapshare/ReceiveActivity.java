@@ -39,20 +39,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ReceiveActivity extends AppCompatActivity {
-    private final ExecutorService worker = Executors.newSingleThreadExecutor();
-    private final Map<String, Session> sessions = new HashMap<>();
-    private final ActivityResultLauncher<String> cameraPermission = registerForActivityResult(
-            new ActivityResultContracts.RequestPermission(), granted -> {
-                if (granted) startScanner();
-                else status.setText("Camera permission is required to receive QR frames.");
-            });
-
     private DecoratedBarcodeView scanner;
     private TextView status;
     private TextView details;
     private ProgressBar progress;
     private String activeSession;
     private boolean saving;
+
+    private final ExecutorService worker = Executors.newSingleThreadExecutor();
+    private final Map<String, Session> sessions = new HashMap<>();
+    private final ActivityResultLauncher<String> cameraPermission = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(), granted -> {
+                if (granted) startScanner();
+                else if (status != null) status.setText("Camera permission is required to receive QR frames.");
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
